@@ -12,7 +12,8 @@ export const RegisterRepo = async(data:any) =>
             lastName:data.lastName,
             email:data.email,
             password:passwordHash,
-            mobile:data.mobile
+            mobile:data.mobile,
+            conformPassword:data.conformPassword
         
         }
     })

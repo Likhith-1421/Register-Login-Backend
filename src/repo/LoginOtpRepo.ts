@@ -11,7 +11,8 @@ export const LoginOtpRepo = (Data:any)=>
         },
         data : 
         {
-            otp : otp
+            otp : otp,
+            otpExpiry : new Date(Date.now() + 60 * 1000)
         }
     })
     return LoginOtp

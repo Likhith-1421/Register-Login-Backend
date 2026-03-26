@@ -3,7 +3,7 @@ import { RegisterRepo } from "../repo/RegisterRepo"
 
 const RegisterService = async(data:any) =>
 {
-  const {firstName,lastName,email,password,mobile} = data
+  const {firstName,lastName,email,password,mobile,conformPassword} = data
 
  const DataUser =  await FindUser(email,mobile)
   
@@ -20,10 +20,15 @@ const RegisterService = async(data:any) =>
     lastName,
     email,
     password,
-    mobile
+    mobile,
+    conformPassword
   })
 console.log(SaveData)
 
+if(password !== conformPassword)
+{
+  throw new Error("Password doesn't matched")
+}
   
 return SaveData
 
