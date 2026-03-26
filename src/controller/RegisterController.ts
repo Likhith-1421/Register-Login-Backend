@@ -11,7 +11,8 @@ const RegisterController = async(req:any,res:any)=>
            const Validation = RegisterSchema.safeParse(data)
            if(!Validation.success)
            {
-            Validation.error.issues.map((err)=>err.message)
+            throw new Error(Validation.error.issues.map((err)=>err.message).join(", "))
+       
            }
    const RegisterData = await RegisterService(data)
    res.status(200).json({message:"Register Successfully", RegisterData})

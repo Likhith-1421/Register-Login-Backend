@@ -1,13 +1,26 @@
 import VerifyOtpRepo from "../repo/VerifyOtpRepo"
 
 
-const VerifyOtpService = (Data:any)=>
+const VerifyOtpService = async(Data:any)=>
 {
-      const VerifyOtp = VerifyOtpRepo(Data)
-      
-     if(!VerifyOtp)
+      const VerifyOtp =await  VerifyOtpRepo(Data)
+      console.log(VerifyOtp) 
+   
+     if(!Data.otp)
      {
-        throw new Error("Otp Required")
+        throw new Error("Please Enter Otp")
+     }
+     if(VerifyOtp?.otp !== Data.otp)
+     {
+        throw new Error("Invalid Otp")
+     }
+     if(!VerifyOtp?.otpExpiry)
+     {
+         throw new Error("OTP is invalid or expired ")
+     }
+     if(VerifyOtp?.otpExpiry < new Date())
+     {
+        throw new Error("Otp Expired")
      }
 
 }
