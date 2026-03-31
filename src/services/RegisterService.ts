@@ -23,7 +23,7 @@ const RegisterService = async(data:any) =>
     mobile,
     conformPassword
   })
-console.log(SaveData)
+//console.log(SaveData)
 
 if(password !== conformPassword)
 {

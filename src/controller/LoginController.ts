@@ -7,7 +7,7 @@ const LoginController = async(req:any,res:any)=>
     const LoginData = await LoginService(data)
     //console.log(LoginData)
    const LoginUser = await LoginRepo(data)
-   console.log(LoginUser)
+   //console.log(LoginUser)
    if(!LoginUser)
    {
     throw new Error("User Not Found")

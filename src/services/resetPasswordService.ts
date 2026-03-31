@@ -1,5 +1,6 @@
 //import { resetPasswords } from "../repo/resetPasswordRepo"
 import { resetPassword } from "../repo/resetPasswordRepo"
+import { resetPasswords } from "../repo/resetPasswordRepo"
 import bcrypt from "bcrypt"
 
 
@@ -8,7 +9,7 @@ import bcrypt from "bcrypt"
 const resetPasswordService = async(data:any,user:any)=>
 {
       const {newPassword, conformPassword, otp} = data
-   //  const findUser = await resetPasswords(data)
+   // 
 console.log(user)
   
     if(!user)
@@ -29,6 +30,11 @@ if(user?.otpExpiry < new Date())
 }
 
    console.log(newPassword)
+    const findUser = await resetPasswords(user)
+    if(data.newPassword == findUser?.password)
+    {
+        throw new Error("Password Doesn't Match with Previous Passwords")
+    }
     
     if(newPassword !== conformPassword)
     {
@@ -36,7 +42,7 @@ if(user?.otpExpiry < new Date())
     }
 if(newPassword == conformPassword)
 {
-    const dataUser =  await resetPassword(data)
+    const dataUser =  await resetPassword(data,user)
    return dataUser
 }
 

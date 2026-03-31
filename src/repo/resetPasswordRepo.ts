@@ -2,35 +2,45 @@ import prisma from "../services/prisma"
 import bcrypt from "bcrypt"
 
 
-// export const resetPasswords = async(data:any)=>
-// {
-//     const findUser = await prisma.user.findFirst({
-//         where:{
-//             otp:data.otp
-//         }
-//     })
-//     return findUser
+export const resetPasswords = async(user:any)=>
+{
+    const findUser = await prisma.user.findFirst({
+        where:{
+            email:user.email
+        }
+    })
+    return findUser
 
-// }
+}
 
-export const resetPassword = async(data:any)=>
+export const resetPassword = async(data:any,user:any )=>
 {
     const passwordHash = await bcrypt.hash(data.newPassword,10)
     //const passwordHashed = await bcrypt.hash(data.conformPassword,10)
-    const user = await prisma.user.update({
+    const users = await prisma.user.update({
         where:
         {
-            email:data.email
+            id:user.id
         },
         data:
         {
-            password:passwordHash 
-         
+            password:passwordHash ,
+            conformPassword : data.conformPassword
+        },
+        select:
+        {
+            id:true,
+            firstName:true,
+            lastName:true,
+            email:true,
            
+            mobile:true,
+            conformPassword:true
         }
+
     
     })
     
-    return user
+    return users
 
 }

@@ -3,11 +3,11 @@ import authMiddleWare from "../Middleware/authMiddleWare"
 const GetProfileController = async(req:any,res:any)=>
 {
     try{
-      const user = req.user
-      console.log(user)
+      // const user = req.user
+      // console.log(user)
 
           const Data  = req.user 
-        console.log(Data)
+       // console.log(Data)
           res.send(Data)
     }
     catch(err:any)
