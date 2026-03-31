@@ -9,7 +9,9 @@ const VerifyToken = async(req:any,res:any,next:any)=>
     {
         throw new Error("Please Login First")
     }
-    const verifytoken = await jwt.verify(token,"Likhith@14$27") as jwt.JwtPayload
+    const Deobfuscation = Buffer.from(token,"base64").toString("utf8")
+    console.log("Deobfuscation:",Deobfuscation)
+    const verifytoken = await jwt.verify(Deobfuscation,"Likhith@14$27") as jwt.JwtPayload
    // console.log(verifytoken)
 
     const user = await FindUser(verifytoken.email)

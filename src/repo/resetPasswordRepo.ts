@@ -6,7 +6,7 @@ export const resetPasswords = async(user:any)=>
 {
     const findUser = await prisma.user.findFirst({
         where:{
-            email:user.email
+            id:user.id
         }
     })
     return findUser
@@ -33,7 +33,6 @@ export const resetPassword = async(data:any,user:any )=>
             firstName:true,
             lastName:true,
             email:true,
-           
             mobile:true,
             conformPassword:true
         }

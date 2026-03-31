@@ -8,7 +8,7 @@ const resetPasswordController = async(req:any,res:any)=>
           const user =   req.user
           console.log(user)
           const forgotPassword = await resetPasswordService(data,user)
-          console.log(forgotPassword)
+          //console.log(forgotPassword)
           res.status(200).json({message:"Password Updated successfully", forgotPassword})
     }
     catch(err:any)

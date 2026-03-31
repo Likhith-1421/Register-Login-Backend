@@ -13,12 +13,13 @@ const LoginServices = async (data: any) => {
 
     const token = jwt.sign({ email: LoginUser.email }, "Likhith@14$27")
 //console.log(token)
+  const TokenObfuscate = Buffer.from(token).toString("base64")
     const PasswordCompare = await bcrypt.compare(data.password, LoginUser.password)
 
     if (!PasswordCompare) {
         throw new Error("Invalid Password")
     }
-    return token
+    return TokenObfuscate
 
 
 

@@ -31,10 +31,17 @@ if(user?.otpExpiry < new Date())
 
    console.log(newPassword)
     const findUser = await resetPasswords(user)
-    if(data.newPassword == findUser?.password)
+    console.log(findUser)
+    if(!findUser)
     {
-        throw new Error("Password Doesn't Match with Previous Passwords")
+        throw new Error("User Not Found")
     }
+    const PasswordHased = await bcrypt.compare(newPassword,findUser?.password)
+    console.log(PasswordHased)
+ if(PasswordHased)
+ {
+    throw new Error("Password Doesn't match with previous Passwords")
+ }
     
     if(newPassword !== conformPassword)
     {

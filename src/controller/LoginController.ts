@@ -16,7 +16,7 @@ const LoginController = async(req:any,res:any)=>
 //    console.log(LoginUser)
   
    res.cookie("token", LoginData)
-   console.log(res.cookie)
+   //console.log(res.cookie)
     res.status(200).json({message:`Hello ${LoginUser.firstName}`,LoginData})
     }
     catch(err:any)
