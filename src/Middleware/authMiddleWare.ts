@@ -3,7 +3,7 @@ import FindUser from "../repo/GetProfile"
 const VerifyToken = async(req:any,res:any,next:any)=>
 {
     const {token} =  req.cookies
-   console.log("Cookies:", req.cookies);
+   //console.log("Cookies:", req.cookies);
  // console.log("TOKEN:", token)
     if(!token)
     {
@@ -23,7 +23,7 @@ const VerifyToken = async(req:any,res:any,next:any)=>
     }
 
     req.user = user
-   console.log("User:",user)
+   //console.log("User:",user)
     next()
 
 }

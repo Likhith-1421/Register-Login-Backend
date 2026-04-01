@@ -5,5 +5,5 @@ import VerifyToken from "../Middleware/authMiddleWare"
 
 const router = express.Router()
 
-router.post("/forgotPassword",VerifyToken,resetPasswordController)
+router.post("/resetPassword",VerifyToken,resetPasswordController)
 export default router

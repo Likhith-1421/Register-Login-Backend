@@ -1,10 +1,14 @@
-import VerifyOtpRepo from "../repo/VerifyOtpRepo"
+import {VerifyOtpRepo} from "../repo/VerifyOtpRepo"
+
 
 
 const VerifyOtpService = async(Data:any)=>
 {
-      const VerifyOtp =await  VerifyOtpRepo(Data)
-      console.log(VerifyOtp) 
+    
+     const VerifyOtp = await VerifyOtpRepo(Data)
+    
+     
+      // console.log(VerifyOtp) 
    
      if(!Data.otp)
      {
@@ -22,6 +26,14 @@ const VerifyOtpService = async(Data:any)=>
      {
         throw new Error("Otp Expired")
      }
+
+    
+     if(!VerifyOtp)
+     {
+        throw new Error("User Not Found")
+     }
+
+
 
 }
 export default VerifyOtpService

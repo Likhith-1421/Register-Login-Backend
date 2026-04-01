@@ -1,11 +1,16 @@
 import VerifyOtpService from "../services/VerifyOtpService"
 
 
+
 const VerifyOtpController = async(req:any,res:any)=>
 {
    try{
            const  Data = req.body
+        
+           //console.log(user)
+           
    const VerifyOtp = await VerifyOtpService(Data)
+  
    res.status(200).json({message:"Otp Verified Successfully",VerifyOtp})
    }
    catch(err:any)
